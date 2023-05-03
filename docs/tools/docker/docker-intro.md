@@ -1,5 +1,5 @@
 ---
-title:  Docker 基本概念解读
+title: Docker核心概念总结
 category: 开发工具
 tag:
   - Docker
@@ -27,8 +27,6 @@ tag:
 
 ![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
 
-
-
 ### 1.2 图解物理机,虚拟机与容器
 
 关于虚拟机与容器的对比在后面会详细介绍到，这里只是通过网上的图片加深大家对于物理机、虚拟机与容器这三者的理解(下面的图片来源于网络)。
@@ -43,7 +41,7 @@ tag:
 
 **容器：**
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20211110104003678.png)
+![](https://oss.javaguide.cn/javaguide/image-20211110104003678.png)
 
 通过上面这三张抽象图，我们可以大概通过类比概括出： **容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。**
 
@@ -70,7 +68,7 @@ tag:
 
 ### 2.3 Docker 容器的特点
 
-- **轻量** :  在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
+- **轻量** : 在一台机器上运行的多个 Docker 容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。
 - **标准** : Docker 容器基于开放式标准，能够在所有主流 Linux 版本、Microsoft Windows 以及包括 VM、裸机服务器和云在内的任何基础设施上运行。
 - **安全** : Docker 赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker 默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。
 
@@ -95,11 +93,11 @@ tag:
 
 传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/2e2b95eebf60b6d03f6c1476f4d7c697.png)
+![](https://oss.javaguide.cn/javaguide/2e2b95eebf60b6d03f6c1476f4d7c697.png)
 
 ### 3.2 容器与虚拟机总结
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/4ef8691d67eb1eb53217099d0a691eb5.png)
+![](https://oss.javaguide.cn/javaguide/4ef8691d67eb1eb53217099d0a691eb5.png)
 
 - **容器是一个应用层抽象，用于将代码和依赖资源打包在一起。** **多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行** 。与虚拟机相比， **容器占用的空间较少**（容器镜像大小通常只有几十兆），**瞬间就能完成启动** 。
 
@@ -111,7 +109,7 @@ tag:
 
 就我而言，对于两者无所谓谁会取代谁，而是两者可以和谐共存。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/056c87751b9dd7b56f4264240fe96d00.png)
+![](https://oss.javaguide.cn/javaguide/056c87751b9dd7b56f4264240fe96d00.png)
 
 ---
 
@@ -173,7 +171,7 @@ Docker 设计时，就充分利用 **Union FS** 的技术，将其设计为**分
 
 - **OFFICIAL Image** ：代表镜像为 Docker 官方提供和维护，相对来说稳定性和安全性较高。
 - **Stars** ：和点赞差不多的意思，类似 GitHub 的 Star。
-- **Dowloads** ：代表镜像被拉取的次数，基本上能够表示镜像被使用的频度。
+- **Downloads** ：代表镜像被拉取的次数，基本上能够表示镜像被使用的频度。
 
 当然，除了直接通过 Docker Hub 网站搜索镜像这种方式外，我们还可以通过 `docker search` 这个命令搜索 Docker Hub 中的镜像，搜索的结果是一致的。
 
@@ -198,7 +196,7 @@ mysql/mysql-server                Optimized MySQL Server Docker images. Create�
 ```bash
 docker version # 查看docker版本
 docker images # 查看所有已下载镜像，等价于：docker image ls 命令
-docker container ls #	查看所有容器
+docker container ls # 查看所有容器
 docker ps #查看正在运行的容器
 docker image prune # 清理临时的、没有被使用的镜像文件。-a, --all: 删除所有没有用的镜像，而不仅仅是临时文件；
 ```
@@ -215,7 +213,7 @@ docker image ls # 查看所有已下载镜像
 
 比如我们要删除我们下载的 mysql 镜像。
 
-通过 `docker rmi [image]` （等价于`docker image rm [image]`）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像 ID删除）。通过我们前面讲的` docker ps`命令即可查看。
+通过 `docker rmi [image]` （等价于`docker image rm [image]`）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像 ID 删除）。通过我们前面讲的`docker ps`命令即可查看。
 
 ```shell
 ➜  ~ docker ps
@@ -233,10 +231,10 @@ REPOSITORY              TAG                 IMAGE ID            CREATED         
 mysql                   5.7                 f6509bac4980        3 months ago        373MB
 ```
 
-通过 IMAGE ID  或者 REPOSITORY 名字即可删除
+通过 IMAGE ID 或者 REPOSITORY 名字即可删除
 
 ```shell
-docker rmi f6509bac4980 #  或者 docker rmi mysql 
+docker rmi f6509bac4980 #  或者 docker rmi mysql
 ```
 
 ## 六 Build Ship and Run
@@ -245,7 +243,7 @@ docker rmi f6509bac4980 #  或者 docker rmi mysql
 
 如果你搜索 Docker 官网，会发现如下的字样：**“Docker - Build, Ship, and Run Any App, Anywhere”**。那么 Build, Ship, and Run 到底是在干什么呢？
 
-![](https://img-blog.csdnimg.cn/2419919953764fc690c929d3844f7011.png)
+![](https://oscimg.oschina.net/oscnet/up-4123a5154118e1aaaf6e5a01286f463a1e2.png)
 
 - **Build（构建镜像）** ： 镜像就像是集装箱包括文件以及运行环境等等资源。
 - **Ship（运输镜像）** ：主机和仓库间运输，这里的仓库就像是超级码头一样。
@@ -275,11 +273,11 @@ LXC 技术主要是借助 Linux 内核中提供的 CGroup 功能和 namespace �
 
 - **namespace 是 Linux 内核用来隔离内核资源的方式。** 通过 namespace 可以让一些进程只能看到与自己相关的一部分资源，而另外一些进程也只能看到与它们自己相关的资源，这两拨进程根本就感觉不到对方的存在。具体的实现方式是把一个或多个进程的相关资源指定在同一个 namespace 中。Linux namespaces 是对全局系统资源的一种封装隔离，使得处于不同 namespace 的进程拥有独立的全局系统资源，改变一个 namespace 中的系统资源只会影响当前 namespace 里的进程，对其他 namespace 中的进程没有影响。
 
-  （以上关于 namespace 介绍内容来自https://www.cnblogs.com/sparkdev/p/9365405.html ，更多关于 namespace 的呢内容可以查看这篇文章 ）。
+  （以上关于 namespace 介绍内容来自<https://www.cnblogs.com/sparkdev/p/9365405.html> ，更多关于 namespace 的呢内容可以查看这篇文章 ）。
 
 - **CGroup 是 Control Groups 的缩写，是 Linux 内核提供的一种可以限制、记录、隔离进程组 (process groups) 所使用的物力资源 (如 cpu memory i/o 等等) 的机制。**
 
-  （以上关于 CGroup 介绍内容来自 https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html ，更多关于 CGroup 的内容可以查看这篇文章 ）。
+  （以上关于 CGroup 介绍内容来自 <https://www.ibm.com/developerworks/cn/linux/1506_cgroup/index.html> ，更多关于 CGroup 的内容可以查看这篇文章 ）。
 
 **cgroup 和 namespace 两者对比：**
 

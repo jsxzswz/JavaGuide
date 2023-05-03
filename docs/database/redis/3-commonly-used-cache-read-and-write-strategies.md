@@ -5,12 +5,11 @@ tag:
   - Redis
 ---
 
-
-看到很多小伙伴简历上写了“**熟练使用缓存**”，但是被我问到“**缓存常用的3种读写策略**”的时候却一脸懵逼。
+看到很多小伙伴简历上写了“**熟练使用缓存**”，但是被我问到“**缓存常用的 3 种读写策略**”的时候却一脸懵逼。
 
 在我看来，造成这个问题的原因是我们在学习 Redis 的时候，可能只是简单了写一些 Demo，并没有去关注缓存的读写策略，或者说压根不知道这回事。
 
-但是，搞懂3种常见的缓存读写策略对于实际工作中使用缓存以及面试中被问到缓存都是非常有帮助的！
+但是，搞懂 3 种常见的缓存读写策略对于实际工作中使用缓存以及面试中被问到缓存都是非常有帮助的！
 
 **下面介绍到的三种模式各有优劣，不存在最佳模式，根据具体的业务场景选择适合自己的缓存读写模式。**
 
@@ -29,7 +28,7 @@ Cache Aside Pattern 中服务端需要同时维系 db 和 cache，并且是以 d
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/cache-aside-write.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-write.png)
 
 **读** :
 
@@ -39,7 +38,7 @@ Cache Aside Pattern 中服务端需要同时维系 db 和 cache，并且是以 d
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/cache-aside-read.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/cache-aside-read.png)
 
 你仅仅了解了上面这些内容的话是远远不够的，我们还要搞懂其中的原理。
 
@@ -89,7 +88,7 @@ Read/Write Through Pattern 中服务端把 cache 视为主要数据存储，从�
 
 简单画了一张图帮助大家理解写的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/write-through.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/write-through.png)
 
 **读(Read Through)：**
 
@@ -98,7 +97,7 @@ Read/Write Through Pattern 中服务端把 cache 视为主要数据存储，从�
 
 简单画了一张图帮助大家理解读的步骤。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/read-through.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/read-through.png)
 
 Read-Through Pattern 实际只是在 Cache-Aside Pattern 之上进行了封装。在 Cache-Aside Pattern 下，发生读请求的时候，如果 cache 中不存在对应的数据，是由客户端自己负责把数据写入 cache，而 Read Through Pattern 则是 cache 服务自己来写入缓存的，这对客户端是透明的。
 

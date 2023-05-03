@@ -1,6 +1,7 @@
 ---
 title: 读写分离和分库分表详解
 category: 高性能
+icon: mysql
 head:
   - - meta
     - name: keywords
@@ -18,7 +19,7 @@ head:
 
 我简单画了一张图来帮助不太清楚读写分离的小伙伴理解。
 
-![读写分离示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation.png)
+![读写分离示意图](https://oss.javaguide.cn/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation.png)
 
 一般情况下，我们都会选择一主多从，也就是一台主数据库负责写，其他的从数据库负责读。主库和从库之间会进行数据同步，以保证从库中数据的准确性。这样的架构实现起来比较简单，并且也符合系统的写少读多的特点。
 
@@ -60,15 +61,15 @@ hintManager.setMasterRouteOnly();
 
 落实到项目本身的话，常用的方式有两种：
 
-**1.代理方式**
+**1. 代理方式**
 
-![代理方式实现读写分离](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
+![代理方式实现读写分离](https://oss.javaguide.cn/github/javaguide/high-performance/read-and-write-separation-and-library-subtable/read-and-write-separation-proxy.png)
 
 我们可以在应用和数据中间加了一个代理层。应用程序所有的数据请求都交给代理层处理，代理层负责分离读写请求，将它们路由到对应的数据库中。
 
-提供类似功能的中间件有 **MySQL Router**（官方）、**Atlas**（基于 MySQL Proxy）、**Maxscale**、**MyCat**。
+提供类似功能的中间件有 **MySQL Router**（官方）、**Atlas**（基于 MySQL Proxy）、**MaxScale**、**MyCat**。
 
-**2.组件方式**
+**2. 组件方式**
 
 在这种方式中，我们可以通过引入第三方组件来帮助我们读写请求。
 
@@ -82,7 +83,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 更具体和详细的过程是这个样子的（图片来自于：[《MySQL Master-Slave Replication on the Same Machine》](https://www.toptal.com/mysql/mysql-master-slave-replication-tutorial)）：
 
-![MySQL主从复制](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/78816271d3ab52424bfd5ad3086c1a0f.png)
+![MySQL主从复制](https://oss.javaguide.cn/java-guide-blog/78816271d3ab52424bfd5ad3086c1a0f.png)
 
 1. 主库将数据库中数据的变化写入到 binlog
 2. 从库连接主库
@@ -158,7 +159,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 分片算法主要解决了数据被水平分片之后，数据究竟该存放在哪个表的问题。
 
 - **哈希分片** ：求指定 key（比如 id） 的哈希，然后根据哈希值确定数据应被放置在哪个表中。哈希分片比较适合随机读写的场景，不太适合经常需要范围查询的场景。
-- **范围分片** ：按照特性的范围区间（比如时间区间、ID区间）来分配数据，比如 将 `id` 为 `1~299999` 的记录分到第一个库， `300000~599999` 的分到第二个库。范围分片适合需要经常进行范围查找的场景，不太适合随机读写的场景（数据未被分散，容易出现热点数据的问题）。
+- **范围分片** ：按照特性的范围区间（比如时间区间、ID 区间）来分配数据，比如 将 `id` 为 `1~299999` 的记录分到第一个库， `300000~599999` 的分到第二个库。范围分片适合需要经常进行范围查找的场景，不太适合随机读写的场景（数据未被分散，容易出现热点数据的问题）。
 - **地理位置分片** ：很多 NewSQL 数据库都支持地理位置分片算法，也就是根据地理位置（如城市、地域）来分配数据。
 - **融合算法** ：灵活组合多种分片算法，比如将哈希分片和范围分片组合。
 - ......
@@ -180,7 +181,7 @@ MySQL binlog(binary log 即二进制日志文件) 主要记录了 MySQL 数据�
 
 ShardingSphere 项目（包括 Sharding-JDBC、Sharding-Proxy 和 Sharding-Sidecar）是当当捐入 Apache 的，目前主要由京东数科的一些巨佬维护。
 
-![](https://img-blog.csdnimg.cn/img_convert/60649996bfc69acb1953063dddf0c2e6.png)
+![](https://oscimg.oschina.net/oscnet/up-0aa05fa5f54e41a44b09619fc0ee597933c.png)
 
 ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。
 
@@ -209,4 +210,3 @@ ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere �
 - **分库** 就是将数据库中的数据分散到不同的数据库上。**分表** 就是对单表的数据进行拆分，可以是垂直拆分，也可以是水平拆分。
 - 引入分库分表之后，需要系统解决事务、分布式 id、无法 join 操作问题。
 - ShardingSphere 绝对可以说是当前分库分表的首选！ShardingSphere 的功能完善，除了支持读写分离和分库分表，还提供分布式事务、数据库治理等功能。另外，ShardingSphere 的生态体系完善，社区活跃，文档完善，更新和发布比较频繁。
-

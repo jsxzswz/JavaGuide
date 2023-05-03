@@ -12,6 +12,8 @@ head:
       content: Redis特殊数据结构总结：HyperLogLogs（基数统计）、Bitmap （位存储）、Geospatial (地理位置)。
 ---
 
+除了 5 种基本的数据结构之外，Redis 还支持 3 种特殊的数据结构 ：Bitmap、HyperLogLog、GEO。
+
 ## Bitmap
 
 ### 介绍
@@ -20,15 +22,15 @@ Bitmap 存储的是连续的二进制数字（0 和 1），通过 Bitmap, 只需
 
 你可以将 Bitmap 看作是一个存储二进制数字（0 和 1）的数组，数组中每个元素的下标叫做 offset（偏移量）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220720194154133.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194154133.png)
 
 ### 常用命令
 
-| 命令                                  | 介绍                                                         |
-| ------------------------------------- | ------------------------------------------------------------ |
-| SETBIT key offset value               | 设置指定 offset 位置的值                                     |
-| GETBIT key offset                     | 获取指定 offset 位置的值                                     |
-| BITCOUNT key start end                | 获取 start 和 end 之前值为 1 的元素个数                      |
+| 命令                                  | 介绍                                                             |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| SETBIT key offset value               | 设置指定 offset 位置的值                                         |
+| GETBIT key offset                     | 获取指定 offset 位置的值                                         |
+| BITCOUNT key start end                | 获取 start 和 end 之前值为 1 的元素个数                          |
 | BITOP operation destkey key1 key2 ... | 对一个或多个 Bitmap 进行运算，可用运算符有 AND, OR, XOR 以及 NOT |
 
 **Bitmap 基本操作演示** ：
@@ -70,11 +72,11 @@ Redis 提供的 HyperLogLog 占用空间非常非常小，只需要 12k 的空�
 
 Redis 官方文档中有对应的详细说明：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220721091424563.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220721091424563.png)
 
 基数计数概率算法为了节省内存并不会直接存储元数据，而是通过一定的概率统计方法预估基数值（集合中包含元素的个数）。因此， HyperLogLog 的计数结果并不是一个精确值，存在一定的误差（标准误差为 `0.81%` 。）。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220720194154133.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194154133.png)
 
 HyperLogLog 的使用非常简单，但原理非常复杂。HyperLogLog 的原理以及在 Redis 中的实现可以看这篇文章：[HyperLogLog 算法的原理讲解以及 Redis 是如何应用它的](https://juejin.cn/post/6844903785744056333) 。
 
@@ -84,10 +86,10 @@ HyperLogLog 的使用非常简单，但原理非常复杂。HyperLogLog 的原�
 
 HyperLogLog 相关的命令非常少，最常用的也就 3 个。
 
-| 命令                                      | 介绍                                                         |
-| ----------------------------------------- | ------------------------------------------------------------ |
-| PFADD key element1 element2 ...           | 添加一个或多个元素到 HyperLogLog 中                          |
-| PFCOUNT key1 key2                         | 获取一个或者多个 HyperLogLog 的唯一计数。                    |
+| 命令                                      | 介绍                                                                             |
+| ----------------------------------------- | -------------------------------------------------------------------------------- |
+| PFADD key element1 element2 ...           | 添加一个或多个元素到 HyperLogLog 中                                              |
+| PFCOUNT key1 key2                         | 获取一个或者多个 HyperLogLog 的唯一计数。                                        |
 | PFMERGE destkey sourcekey1 sourcekey2 ... | 将多个 HyperLogLog 合并到 destkey 中，destkey 会结合多个源，算出对应的唯一计数。 |
 
 **HyperLogLog 基本操作演示** ：
@@ -126,17 +128,17 @@ Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理�
 
 通过 GEO 我们可以轻松实现两个位置距离的计算、获取指定位置附近的元素等功能。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220720194359494.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220720194359494.png)
 
 ### 常用命令
 
-| 命令                                             | 介绍                                                         |
-| ------------------------------------------------ | ------------------------------------------------------------ |
-| GEOADD key longitude1 latitude1 member1 ...      | 添加一个或多个元素对应的经纬度信息到 GEO 中                  |
-| GEOPOS key member1 member2 ...                   | 返回给定元素的经纬度信息                                     |
-| GEODIST key member1 member2 M/KM/FT/MI           | 返回两个给定元素之间的距离                                   |
+| 命令                                             | 介绍                                                                                                 |
+| ------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| GEOADD key longitude1 latitude1 member1 ...      | 添加一个或多个元素对应的经纬度信息到 GEO 中                                                          |
+| GEOPOS key member1 member2 ...                   | 返回给定元素的经纬度信息                                                                             |
+| GEODIST key member1 member2 M/KM/FT/MI           | 返回两个给定元素之间的距离                                                                           |
 | GEORADIUS key longitude latitude radius distance | 获取指定位置附近 distance 范围内的其他元素，支持 ASC(由近到远)、DESC（由远到近）、Count(数量) 等参数 |
-| GEORADIUSBYMEMBER key member radius distance     | 类似于 GEORADIUS 命令，只是参照的中心点是 GEO 中的元素       |
+| GEORADIUSBYMEMBER key member radius distance     | 类似于 GEORADIUS 命令，只是参照的中心点是 GEO 中的元素                                               |
 
 **基本操作** ：
 
@@ -154,7 +156,7 @@ Geospatial index（地理空间索引，简称 GEO） 主要用于存储地理�
 
 GEO 中存储的地理位置信息的经纬度数据通过 GeoHash 算法转换成了一个整数，这个整数作为 Sorted Set 的 score(权重参数)使用。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/database/redis/image-20220721201545147.png)
+![](https://oss.javaguide.cn/github/javaguide/database/redis/image-20220721201545147.png)
 
 **获取指定位置范围内的其他元素** ：
 

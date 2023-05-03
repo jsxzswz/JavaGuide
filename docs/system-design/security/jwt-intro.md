@@ -15,7 +15,7 @@ JWT 自身包含了身份验证所需要的所有信息，因此，我们的服�
 
 并且， 使用 JWT 认证可以有效避免 CSRF 攻击，因为 JWT 一般是存在在 localStorage 中，使用 JWT 进行身份验证的过程中是不会涉及到 Cookie 的。
 
-我在 [JWT 优缺点分析](./advantages&disadvantages-of-jwt.md)这篇文章中有详细介绍到使用 JWT 做身份认证的优势和劣势。
+我在 [JWT 优缺点分析](./advantages-and-disadvantages-of-jwt.md)这篇文章中有详细介绍到使用 JWT 做身份认证的优势和劣势。
 
 下面是 [RFC 7519](https://tools.ietf.org/html/rfc7519) 对 JWT 做的较为正式的定义。
 
@@ -23,7 +23,7 @@ JWT 自身包含了身份验证所需要的所有信息，因此，我们的服�
 
 ## JWT 由哪些部分组成？
 
-![此图片来源于：https://supertokens.com/blog/oauth-vs-jwt](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/system-design/jwt/jwt-composition.png)
+![此图片来源于：https://supertokens.com/blog/oauth-vs-jwt](https://oss.javaguide.cn/javaguide/system-design/jwt/jwt-composition.png)
 
 JWT 本质上就是一组字串，通过（`.`）切分成三个为 Base64 编码的部分：
 
@@ -45,7 +45,7 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 Header 和 Payload 都是 JSON 格式的数据，Signature 由 Payload、Header 和 Secret(密钥)通过特定的计算公式和加密算法得到。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/system-design/jwt/jwt.io.png)
+![](https://oss.javaguide.cn/javaguide/system-design/jwt/jwt.io.png)
 
 ### Header
 
@@ -127,7 +127,7 @@ HMACSHA256(
 
 在基于 JWT 进行身份验证的的应用程序中，服务器通过 Payload、Header 和 Secret(密钥)创建 JWT 并将 JWT 发送给客户端。客户端接收到 JWT 之后，会将其保存在 Cookie 或者 localStorage 里面，以后客户端发出的所有请求都会携带这个令牌。
 
-![ JWT 身份验证示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/jwt/jwt-authentication%20process.png)
+![ JWT 身份验证示意图](https://oss.javaguide.cn/github/javaguide/system-design/jwt/jwt-authentication%20process.png)
 
 简化后的步骤如下：
 
@@ -145,7 +145,7 @@ HMACSHA256(
 
 ## 如何防止 JWT 被篡改？
 
-有了签名之后，即使 JWT 被泄露或者解惑，黑客也没办法同时篡改 Signature 、Header 、Payload。
+有了签名之后，即使 JWT 被泄露或者截获，黑客也没办法同时篡改 Signature 、Header 、Payload。
 
 这是为什么呢？因为服务端拿到 JWT 之后，会解析出其中包含的 Header、Payload 以及 Signature 。服务端会根据 Header、Payload、密钥再次生成一个 Signature。拿新生成的 Signature 和 JWT 中的 Signature 作对比，如果一样就说明 Header 和 Payload 没有被修改。
 

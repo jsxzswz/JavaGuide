@@ -15,18 +15,18 @@ tag:
 
 **Trie 树** 也称为字典树、单词查找树，哈系树的一种变种，通常被用于字符串匹配，用来解决在一组字符串集合中快速查找某个字符串的问题。像浏览器搜索的关键词提示一般就是基于 Trie 树来做的。
 
-![](./images/sentive-words-filter/brower-trie.png)
+![浏览器 Trie 树效果展示](https://oss.javaguide.cn/github/javaguide/system-design/security/brower-trie.png)
 
 假如我们的敏感词库中有以下敏感词：
 
-- 高清有码
-- 高清 AV
+- 高清视频
+- 高清 CV
 - 东京冷
 - 东京热
 
 我们构造出来的敏感词 Trie 树就是下面这样的：
 
-![](./images/sentive-words-filter/trie.png)
+![敏感词 Trie 树](https://oss.javaguide.cn/github/javaguide/system-design/security/sensitive-word-trie.png)
 
 当我们要查找对应的字符串“东京热”的话，我们会把这个字符串切割成单个的字符“东”、“京”、“热”，然后我们从 Trie 树的根节点开始匹配。
 
@@ -34,7 +34,7 @@ tag:
 
 [Apache Commons Collecions](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4) 这个库中就有 Trie 树实现：
 
-![](./images/sentive-words-filter/common-collections-trie.png)
+![Apache Commons Collecions 中的 Trie 树实现](https://oss.javaguide.cn/github/javaguide/system-design/security/common-collections-trie.png)
 
 ```java
 Trie<String, String> trie = new PatriciaTrie<>();
@@ -56,13 +56,13 @@ AC 自动机算法使用 Trie 树来存放模式串的前缀，通过失败匹�
 
 ### DFA
 
-**DFA**（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 NFA（Non-Deterministic Finite Automata，有穷自动机)。
+**DFA**（Deterministic Finite Automata)即确定有穷自动机，与之对应的是 NFA（Non-Deterministic Finite Automata，不确定有穷自动机)。
 
 关于 DFA 的详细介绍可以看这篇文章：[有穷自动机 DFA&NFA (学习笔记) - 小蜗牛的文章 - 知乎](https://zhuanlan.zhihu.com/p/30009083) 。
 
 [Hutool](https://hutool.cn/docs/#/dfa/%E6%A6%82%E8%BF%B0) 提供了 DFA 算法的实现：
 
-![](./images/sentive-words-filter/hutool-dfa.png)
+![Hutool 的 DFA 算法](https://oss.javaguide.cn/github/javaguide/system-design/security/hutool-dfa.png)
 
 ```java
 WordTree wordTree = new WordTree();

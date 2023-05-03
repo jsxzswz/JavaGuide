@@ -1,6 +1,7 @@
 ---
 title: Web 实时消息推送详解
 category: 系统设计
+icon: "messages"
 head:
   - - meta
     - name: keywords
@@ -10,11 +11,11 @@ head:
       content: 消息推送通常是指网站的运营工作等人员，通过某种工具对用户当前网页或移动设备 APP 进行的主动消息推送。
 ---
 
-> 原文地址：https://juejin.cn/post/7122014462181113887，JavaGuide 对本文进行了完善总结。
+> 原文地址：<https://juejin.cn/post/7122014462181113887，JavaGuide> 对本文进行了完善总结。
 
 我有一个朋友做了一个小破站，现在要实现一个站内信 Web 消息推送的功能，对，就是下图这个小红点，一个很常用的功能。
 
-![站内信 Web 消息推送](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192380.png)
+![站内信 Web 消息推送](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192380.png)
 
 不过他还没想好用什么方式做，这里我帮他整理了一下几种方案，并简单做了实现。
 
@@ -28,17 +29,17 @@ head:
 
 移动端消息推送示例 ：
 
-![移动端消息推送示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/IKleJ9auR1Ojdicyr0bH.png)
+![移动端消息推送示例](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/IKleJ9auR1Ojdicyr0bH.png)
 
 Web 端消息推送示例：
 
-![Web 端消息推送示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/image-20220819100512941.png)
+![Web 端消息推送示例](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/image-20220819100512941.png)
 
 在具体实现之前，咱们再来分析一下前边的需求，其实功能很简单，只要触发某个事件（主动分享了资源或者后台主动推送消息），Web 页面的通知小红点就会实时的 `+1` 就可以了。
 
 通常在服务端会有若干张消息推送表，用来记录用户触发不同事件所推送不同类型的消息，前端主动查询（拉）或者被动接收（推）用户所有未读的消息数。
 
-![消息推送表](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192384.png)
+![消息推送表](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192384.png)
 
 消息推送无非是推（push）和拉（pull）两种形式，下边我们逐个了解下。
 
@@ -56,10 +57,10 @@ Web 端消息推送示例：
 setInterval(() => {
   // 方法请求
   messageCount().then((res) => {
-      if (res.code === 200) {
-          this.messageCount = res.data
-      }
-  })
+    if (res.code === 200) {
+      this.messageCount = res.data;
+    }
+  });
 }, 1000);
 ```
 
@@ -73,9 +74,9 @@ setInterval(() => {
 
 长轮询其实原理跟轮询差不多，都是采用轮询的方式。不过，如果服务端的数据没有发生变更，会 一直 hold 住请求，直到服务端的数据发生变化，或者等待一定时间超时才会返回。返回后，客户端又会立即再次发起下一次长轮询。
 
-这次我使用 Apollo 配置中心实现长轮询的方式，应用了一个类`DeferredResult`，它是在 Servelet3.0 后经过 Spring 封装提供的一种异步请求机制，直意就是延迟结果。
+这次我使用 Apollo 配置中心实现长轮询的方式，应用了一个类`DeferredResult`，它是在 Servlet3.0 后经过 Spring 封装提供的一种异步请求机制，直意就是延迟结果。
 
-![长轮询示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192386.png)
+![长轮询示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192386.png)
 
 `DeferredResult`可以允许容器线程快速释放占用的资源，不阻塞请求线程，以此接受更多的请求提升系统的吞吐量，然后启动异步工作线程处理真正的业务逻辑，处理完成调用`DeferredResult.setResult(200)`提交响应结果。
 
@@ -150,9 +151,9 @@ public class AsyncRequestTimeoutHandler {
 
 iframe 流就是在页面中插入一个隐藏的`<iframe>`标签，通过在`src`中请求消息数量 API 接口，由此在服务端和客户端之间创建一条长连接，服务端持续向`iframe`传输数据。
 
-传输的数据通常是 HTML、或是内嵌的JavaScript 脚本，来达到实时更新页面的效果。
+传输的数据通常是 HTML、或是内嵌的 JavaScript 脚本，来达到实时更新页面的效果。
 
-![iframe 流示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192388.png)
+![iframe 流示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192388.png)
 
 这种方式实现简单，前端只要一个`<iframe>`标签搞定了
 
@@ -182,9 +183,9 @@ public class IframeController {
 }
 ```
 
-iframe 流的服务器开销很大，而且IE、Chrome等浏览器一直会处于 loading 状态，图标会不停旋转，简直是强迫症杀手。
+iframe 流的服务器开销很大，而且 IE、Chrome 等浏览器一直会处于 loading 状态，图标会不停旋转，简直是强迫症杀手。
 
-![iframe 流效果](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192389.png)
+![iframe 流效果](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192389.png)
 
 iframe 流非常不友好，强烈不推荐。
 
@@ -194,13 +195,13 @@ iframe 流非常不友好，强烈不推荐。
 
 SSE 基于 HTTP 协议的，我们知道一般意义上的 HTTP 协议是无法做到服务端主动向客户端推送消息的，但 SSE 是个例外，它变换了一种思路。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192390.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192390.png)
 
 SSE 在服务器和客户端之间打开一个单向通道，服务端响应的不再是一次性的数据包而是`text/event-stream`类型的数据流信息，在有数据变更时从服务器流式传输到客户端。
 
 整体的实现思路有点类似于在线视频播放，视频流会连续不断的推送到浏览器，你也可以理解成，客户端在完成一次用时很长（网络不畅）的下载。
 
-![SSE 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192391.png)
+![SSE 示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192391.png)
 
 SSE 与 WebSocket 作用相似，都可以建立服务端与浏览器之间的通信，实现服务端向客户端推送消息，但还是有些许不同：
 
@@ -291,7 +292,7 @@ public static void sendMessage(String userId, String message) {
 
 **注意：** SSE 不支持 IE 浏览器，对其他主流浏览器兼容性做的还不错。
 
-![SSE 兼容性](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192393.png)
+![SSE 兼容性](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192393.png)
 
 ### Websocket
 
@@ -299,7 +300,7 @@ Websocket 应该是大家都比较熟悉的一种实现消息推送的方式，�
 
 是一种在 TCP 连接上进行全双工通信的协议，建立客户端和服务器之间的通信渠道。浏览器和服务器仅需一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
 
-![Websocket 示意图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
+![Websocket 示意图](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192394.png)
 
 SpringBoot 整合 Websocket，先引入 Websocket 相关的工具包，和 SSE 相比额外的开发成本。
 
@@ -405,7 +406,7 @@ public class WebSocketServer {
 
 页面初始化建立 WebSocket 连接，之后就可以进行双向通信了，效果还不错。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000042192395.png)
+![](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000042192395.png)
 
 ### MQTT
 
@@ -415,7 +416,7 @@ MQTT (Message Queue Telemetry Transport)是一种基于发布/订阅（publish/s
 
 该协议将消息的发布者（publisher）与订阅者（subscriber）进行分离，因此可以在不可靠的网络环境中，为远程连接的设备提供可靠的消息服务，使用方式与传统的 MQ 有点类似。
 
-![MQTT 协议示例](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/system-design/web-real-time-message-push/1460000022986325.png)
+![MQTT 协议示例](https://oss.javaguide.cn/github/javaguide/system-design/web-real-time-message-push/1460000022986325.png)
 
 TCP 协议位于传输层，MQTT 协议位于应用层，MQTT 协议构建于 TCP/IP 协议上，也就是说只要支持 TCP/IP 协议栈的地方，都可以使用 MQTT 协议。
 
@@ -436,14 +437,11 @@ MQTT 协议为什么在物联网（IOT）中如此受偏爱？而不是其它协
 
 > 以下内容为 JavaGuide 补充
 
-|           | 介绍                                                         | 优点                   | 缺点                                                 |
-| --------- | ------------------------------------------------------------ | ---------------------- | ---------------------------------------------------- |
-| 短轮询    | 客户端定时向服务端发送请求，服务端直接返回响应数据（即使没有数据更新） | 简单、易理解、易实现   | 实时性太差，无效请求太多，频繁建立连接太耗费资源     |
-| 长轮询    | 与短轮询不同是，长轮询接收到客户端请求之后等到有数据更新才返回请求 | 减少了无效请求         | 挂起请求会导致资源浪费                               |
-| iframe 流 | 服务端和客户端之间创建一条长连接，服务端持续向`iframe`传输数据。 | 简单、易理解、易实现   | 维护一个长连接会增加开销，效果太差（图标会不停旋转） |
-| SSE       | 一种服务器端到客户端(浏览器)的单向消息推送。                 | 简单、易实现，功能丰富 | 不支持双向通信                                       |
+|           | 介绍                                                                                                          | 优点                   | 缺点                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------------- |
+| 短轮询    | 客户端定时向服务端发送请求，服务端直接返回响应数据（即使没有数据更新）                                        | 简单、易理解、易实现   | 实时性太差，无效请求太多，频繁建立连接太耗费资源     |
+| 长轮询    | 与短轮询不同是，长轮询接收到客户端请求之后等到有数据更新才返回请求                                            | 减少了无效请求         | 挂起请求会导致资源浪费                               |
+| iframe 流 | 服务端和客户端之间创建一条长连接，服务端持续向`iframe`传输数据。                                              | 简单、易理解、易实现   | 维护一个长连接会增加开销，效果太差（图标会不停旋转） |
+| SSE       | 一种服务器端到客户端(浏览器)的单向消息推送。                                                                  | 简单、易实现，功能丰富 | 不支持双向通信                                       |
 | WebSocket | 除了最初建立连接时用 HTTP 协议，其他时候都是直接基于 TCP 协议进行通信的，可以实现客户端和服务端的全双工通信。 | 性能高、开销小         | 对开发人员要求更高，实现相对复杂一些                 |
-| MQTT      | 基于发布/订阅（publish/subscribe）模式的轻量级通讯协议，通过订阅相应的主题来获取消息。 | 成熟稳定，轻量级       | 对开发人员要求更高，实现相对复杂一些                 |
-
-
-
+| MQTT      | 基于发布/订阅（publish/subscribe）模式的轻量级通讯协议，通过订阅相应的主题来获取消息。                        | 成熟稳定，轻量级       | 对开发人员要求更高，实现相对复杂一些                 |

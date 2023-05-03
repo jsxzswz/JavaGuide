@@ -7,7 +7,7 @@ category: 走近项目
 
 你可以通过 [RSS 订阅](https://javaguide.cn/feed.json)获取网站的最新更新，你还可以通过 [https://javaguide.cn/article/](https://javaguide.cn/article/)获取到网站最新更新的文章。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguideimage-20220614172338606.png)
+![](https://oss.javaguide.cn/github/javaguideimage-20220614172338606.png)
 
 这里只记录一些比较重要的一些节点：
 
@@ -17,5 +17,3 @@ category: 走近项目
 - [2021-03-03](https://github.com/Snailclimb/JavaGuide/commit/827996e7722fd51718863d4bee156a8c6c759ff5) : 移除了开发工具的部分内容。
 - [2021-03-03](https://github.com/Snailclimb/JavaGuide/commit/5a5f8ccb3bfb8d6ba8ac41295f1a1e4555395260) ： vuepress-theme-hope 主题更新升级（比较重要的一次主题更新，从 1.x 版本升级到 2.x 版本，网站性能提升）。
 - [2021-11-09](https://github.com/Snailclimb/JavaGuide/commit/dc45389934b7763f4f9789168f71c72ef303d3c4) : 基于 vuepress 重构整个项目，提升阅读体验。
-
-

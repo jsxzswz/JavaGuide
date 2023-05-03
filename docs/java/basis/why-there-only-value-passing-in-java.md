@@ -1,5 +1,5 @@
 ---
-title:  为什么 Java 中只有值传递？
+title: Java 值传递详解
 category: Java
 tag:
   - Java基础
@@ -40,7 +40,7 @@ void sayHello(String str) {
 
 **为什么说 Java 只有值传递呢？** 不需要太多废话，我通过 3 个例子来给大家证明。
 
-### 案例1：传递基本类型参数
+### 案例 1：传递基本类型参数
 
 代码：
 
@@ -73,13 +73,13 @@ num2 = 20
 
 解析：
 
-在 `swap()`  方法中，`a`、`b` 的值进行交换，并不会影响到 `num1`、`num2`。因为，`a`、`b` 的值，只是从 `num1`、`num2` 的复制过来的。也就是说，a、b 相当于 `num1`、`num2` 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
+在 `swap()` 方法中，`a`、`b` 的值进行交换，并不会影响到 `num1`、`num2`。因为，`a`、`b` 的值，只是从 `num1`、`num2` 的复制过来的。也就是说，a、b 相当于 `num1`、`num2` 的副本，副本的内容无论怎么修改，都不会影响到原件本身。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/java-value-passing-01.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/java-value-passing-01.png)
 
-通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例2。
+通过上面例子，我们已经知道了一个方法不能修改一个基本数据类型的参数，而对象引用作为参数就不一样，请看案例 2。
 
-### 案例2：传递引用类型参数1
+### 案例 2：传递引用类型参数 1
 
 代码：
 
@@ -106,7 +106,7 @@ num2 = 20
 
 解析：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/java-value-passing-02.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/java-value-passing-02.png)
 
 看了这个案例很多人肯定觉得 Java 对引用类型的参数采用的是引用传递。
 
@@ -116,7 +116,7 @@ num2 = 20
 
 为了更强有力地反驳 Java 对引用类型的参数采用的不是引用传递，我们再来看下面这个案例！
 
-### 案例3 ：传递引用类型参数2
+### 案例 3 ：传递引用类型参数 2
 
 ```java
 public class Person {
@@ -141,7 +141,7 @@ public static void swap(Person person1, Person person2) {
 }
 ```
 
-输出: 
+输出:
 
 ```
 person1:小李
@@ -156,7 +156,7 @@ xiaoLi:小李
 
 `swap` 方法的参数 `person1` 和 `person2` 只是拷贝的实参 `xiaoZhang` 和 `xiaoLi` 的地址。因此， `person1` 和 `person2` 的互换只是拷贝的两个地址的互换罢了，并不会影响到实参 `xiaoZhang` 和 `xiaoLi` 。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/basis/java-value-passing-03.png)
+![](https://oss.javaguide.cn/github/javaguide/java/basis/java-value-passing-03.png)
 
 ## 引用传递是怎么样的？
 
@@ -177,12 +177,13 @@ int main()
 {
     int age = 10;
     std::cout << "invoke before: " << age << "\n";
-    incr(age);
+    incr(*age);
     std::cout << "invoke after: " << age << "\n";
 }
 ```
 
 输出结果：
+
 ```
 invoke before: 10
 incr before: 10
@@ -195,9 +196,11 @@ invoke after: 11
 ## 为什么 Java 不引入引用传递呢？
 
 引用传递看似很好，能在方法内就直接把实参的值修改了，但是，为什么 Java 不引入引用传递呢？
+
 **注意：以下为个人观点看法，并非来自于 Java 官方：**
+
 1. 出于安全考虑，方法内部对值进行的操作，对于调用者都是未知的（把方法定义为接口，调用方不关心具体实现）。你也想象一下，如果拿着银行卡去取钱，取的是 100，扣的是 200，是不是很可怕。
-2. Java 之父 James Gosling 在设计之处就看到了 C、C++ 的许多弊端，所以才想着去设计一门新的语言 Java。在他设计 Java 的时候就遵循了简单易用的原则，摒弃了许多开发者一不留意就会造成问题的“特性”，语言本身的东西少了，开发者要学习的东西也少了。
+2. Java 之父 James Gosling 在设计之初就看到了 C、C++ 的许多弊端，所以才想着去设计一门新的语言 Java。在他设计 Java 的时候就遵循了简单易用的原则，摒弃了许多开发者一不留意就会造成问题的“特性”，语言本身的东西少了，开发者要学习的东西也少了。
 
 ## 总结
 
@@ -209,6 +212,6 @@ Java 中将实参传递给方法（或函数）的方式是 **值传递** ：
 ## 参考
 
 - 《Java 核心技术卷 Ⅰ》基础知识第十版第四章 4.5 小节
-- [Java 到底是值传递还是引用传递？ - Hollis的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121) 
+- [Java 到底是值传递还是引用传递？ - Hollis 的回答 - 知乎](https://www.zhihu.com/question/31203609/answer/576030121)
 - [Oracle Java Tutorials - Passing Information to a Method or a Constructor](https://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html)
 - [Interview with James Gosling, Father of Java](https://mappingthejourney.com/single-post/2017/06/29/episode-3-interview-with-james-gosling-father-of-java/)

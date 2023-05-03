@@ -18,7 +18,7 @@ icon: "book"
 
 ## 计算机基础
 
-- **[cs-self-learning ](https://github.com/PKUFlyingPig/cs-self-learning)** ：计算机自学指南，汇总欧美众多名校高质量计算机课程。
+- **[cs-self-learning](https://github.com/PKUFlyingPig/cs-self-learning)** ：计算机自学指南，汇总欧美众多名校高质量计算机课程。
 - **[CS-Notes](https://github.com/CyC2018/CS-Notes "CS-Notes")** ：技术面试必备基础知识、Leetcode 题解、后端面试、Java 面试、春招、秋招、操作系统、计算机网络、系统设计。
 - **[Waking-Up](https://github.com/wolverinn/Waking-Up)** ：计算机基础（计算机网络/操作系统/数据库/Git...）面试问题全面总结。
 
@@ -45,7 +45,7 @@ icon: "book"
 
 ### Nginx
 
-- **[nginx-tutorial](https://github.com/dunwu/nginx-tutorial)** ：一系列 Nginx 极简教程，包含HTTP 反向代理、HTTPS 反向代理、负载均衡、静态站点、文件服务器搭建等实战内容。
+- **[nginx-tutorial](https://github.com/dunwu/nginx-tutorial)** ：一系列 Nginx 极简教程，包含 HTTP 反向代理、HTTPS 反向代理、负载均衡、静态站点、文件服务器搭建等实战内容。
 
 ## 大数据
 
@@ -54,6 +54,7 @@ icon: "book"
 
 ## 开源书籍
 
+- **[《高并发的哲学原理》](https://github.com/johnlui/PPHC)**：本书的目标是在作者有限的认知范围内，讨论一下高并发问题背后隐藏的一个哲学原理——找出单点，进行拆分。
 - **[《Effective Java（第 3 版）》中英对照版](https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual)** ：《Effective Java（第 3 版）各章节的中英文学习参考。
 - **[《DDIA（设计数据密集型应用）》中文版](https://github.com/Vonng/ddia)** ：《Designing Data-Intensive Application》DDIA 中文翻译。
 - **[《凤凰架构》](https://github.com/fenixsoft/awesome-fenix)** ：讨论如何构建一套可靠的大型分布式系统。

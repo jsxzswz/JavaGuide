@@ -1,11 +1,19 @@
-import { defineNavbarConfig } from "vuepress-theme-hope";
+import { navbar } from "vuepress-theme-hope";
 
-export const navbarConfig = defineNavbarConfig([
+export default navbar([
   { text: "面试指南", icon: "java", link: "/home.md" },
-  { text: "优质专栏", icon: "recommend", link: "/zhuanlan/" },
+  {
+    text: "知识星球",
+    icon: "planet",
+    link: "/about-the-author/zhishixingqiu-two-years.md",
+  },
   { text: "开源项目", icon: "github", link: "/open-source-project/" },
   { text: "技术书籍", icon: "book", link: "/books/" },
-  { text: "技术文章", icon: "article", link: "/high-quality-technical-articles/" },
+  {
+    text: "程序人生",
+    icon: "article",
+    link: "/high-quality-technical-articles/",
+  },
   {
     text: "网站相关",
     icon: "about",
@@ -15,13 +23,7 @@ export const navbarConfig = defineNavbarConfig([
         text: "更新历史",
         icon: "history",
         link: "/timeline/",
-      },
-      {
-        text: "旧版入口",
-        icon: "java",
-        link: "https://snailclimb.gitee.io/javaguide/#/",
-      },
-      { text: "RSS", icon: "rss", link: "https://javaguide.cn/feed.json" },
+      }
     ],
   },
 ]);

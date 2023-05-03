@@ -1,5 +1,5 @@
 ---
-title:  Spring&SpringBoot常用注解总结
+title: Spring&SpringBoot常用注解总结
 category: 框架
 tag:
   - SpringBoot
@@ -14,13 +14,13 @@ tag:
 
 最近看到网上有一篇关于 SpringBoot 常用注解的文章被转载的比较多，我看了文章内容之后属实觉得质量有点低，并且有点会误导没有太多实际使用经验的人（这些人又占据了大多数）。所以，自己索性花了大概 两天时间简单总结一下了。
 
-**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide 哥感激不尽！**
+**因为我个人的能力和精力有限，如果有任何不对或者需要完善的地方，请帮忙指出！Guide感激不尽！**
 
 ### 1. `@SpringBootApplication`
 
 这里先单独拎出`@SpringBootApplication` 注解说一下，虽然我们一般不会主动去使用它。
 
-_Guide 哥：这个注解是 Spring Boot 项目的基石，创建 SpringBoot 项目之后会默认在主类加上。_
+_Guide：这个注解是 Spring Boot 项目的基石，创建 SpringBoot 项目之后会默认在主类加上。_
 
 ```java
 @SpringBootApplication
@@ -98,7 +98,7 @@ public class UserController {
 
 `@RestController`注解是`@Controller`和`@ResponseBody`的合集,表示这是个控制器 bean,并且是将函数的返回值直接填入 HTTP 响应体中,是 REST 风格的控制器。
 
-_Guide 哥：现在都是前后端分离，说实话我已经很久没有用过`@Controller`。如果你的项目太老了的话，就当我没说。_
+_Guide：现在都是前后端分离，说实话我已经很久没有用过`@Controller`。如果你的项目太老了的话，就当我没说。_
 
 单独使用 `@Controller` 不加 `@ResponseBody`的话一般是用在要返回一个视图的情况，这种情况属于比较传统的 Spring MVC 的应用，对应于前后端不分离的情况。`@Controller` +`@ResponseBody` 返回 JSON 或 XML 形式数据
 
@@ -265,7 +265,7 @@ public class UserRegisterRequest {
 我们发送 post 请求到这个接口，并且 body 携带 JSON 数据：
 
 ```json
-{"userName":"coder","fullName":"shuangkou","password":"123456"}
+{ "userName": "coder", "fullName": "shuangkou", "password": "123456" }
 ```
 
 这样我们的后端就可以直接把 json 格式的数据映射到我们的 `UserRegisterRequest` 类上。
@@ -364,9 +364,9 @@ class WebSite {
 
 SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。如下图所示（通过 idea 插件—Maven Helper 生成）：
 
-**注**：更新版本的 spring-boot-starter-web 依赖中不再有 hibernate-validator 包（如2.3.11.RELEASE），需要自己引入 `spring-boot-starter-validation` 依赖。
+**注**：更新版本的 spring-boot-starter-web 依赖中不再有 hibernate-validator 包（如 2.3.11.RELEASE），需要自己引入 `spring-boot-starter-validation` 依赖。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/2021/03/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
+![](https://oss.javaguide.cn/2021/03/c7bacd12-1c1a-4e41-aaaf-4cad840fc073.png)
 
 非 SpringBoot 项目需要自行引入相关依赖包，这里不多做讲解，具体可以查看我的这篇文章：《[如何在 Spring/Spring Boot 中做参数校验？你需要了解的都在这里！](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247485783&idx=1&sn=a407f3b75efa17c643407daa7fb2acd6&chksm=cea2469cf9d5cf8afbcd0a8a1c9cc4294d6805b8e01bee6f76bb2884c5bc15478e91459def49&token=292197051&lang=zh_CN#rd)》。
 
@@ -519,7 +519,7 @@ private Long id;
 
 JPA 使用枚举定义了 4 种常见的主键生成策略，如下：
 
-_Guide 哥：枚举替代常量的一种用法_
+_Guide：枚举替代常量的一种用法_
 
 ```java
 public enum GenerationType {
@@ -892,14 +892,14 @@ public class Account {
 
 ```json
 {
-    "location": {
-        "provinceName":"湖北",
-        "countyName":"武汉"
-    },
-    "personInfo": {
-        "userName": "coder1234",
-        "fullName": "shaungkou"
-    }
+  "location": {
+    "provinceName": "湖北",
+    "countyName": "武汉"
+  },
+  "personInfo": {
+    "userName": "coder1234",
+    "fullName": "shaungkou"
+  }
 }
 ```
 
@@ -920,8 +920,8 @@ public class Account {
 
 ```json
 {
-  "provinceName":"湖北",
-  "countyName":"武汉",
+  "provinceName": "湖北",
+  "countyName": "武汉",
   "userName": "coder1234",
   "fullName": "shaungkou"
 }

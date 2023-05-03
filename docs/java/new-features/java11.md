@@ -7,14 +7,16 @@ tag:
 
 **Java 11** 于 2018 年 9 月 25 日正式发布，这是很重要的一个版本！Java 11 和 2017 年 9 月份发布的 Java 9 以及 2018 年 3 月份发布的 Java 10 相比，其最大的区别就是：在长期支持(Long-Term-Support)方面，**Oracle 表示会对 Java 11 提供大力支持，这一支持将会持续至 2026 年 9 月。这是据 Java 8 以后支持的首个长期版本。**
 
-![](https://img-blog.csdnimg.cn/20210603202746605.png)
+下面这张图是 Oracle 官方给出的 Oracle JDK 支持的时间线。
+
+![](https://oss.javaguide.cn/github/javaguide/java/new-features/4c1611fad59449edbbd6e233690e9fa7.png)
 
 **概览（精选了一部分）** ：
 
 - [JEP 321：HTTP Client 标准化](https://openjdk.java.net/jeps/321)
 - [JEP 333：ZGC(可伸缩低延迟垃圾收集器)](https://openjdk.java.net/jeps/333)
 - [JEP 323：Lambda 参数的局部变量语法](https://openjdk.java.net/jeps/323)
-- [JEP 330：启动单文件源代码程序](https://openjdk.java.net/jeps/330) 
+- [JEP 330：启动单文件源代码程序](https://openjdk.java.net/jeps/330)
 
 ## HTTP Client 标准化
 

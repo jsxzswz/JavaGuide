@@ -1,7 +1,12 @@
 ---
 title: 项目经验指南
 category: 面试准备
+icon: project
 ---
+
+::: tip 友情提示
+本文节选自 **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)**。这是一份教你如何更高效地准备面试的小册，涵盖常见八股文（系统设计、常见框架、分布式、高并发 ......）、优质面经等内容。
+:::
 
 ## 没有项目经验怎么办?
 
@@ -15,7 +20,7 @@ category: 面试准备
 
 你可以通过慕课网、哔哩哔哩、拉勾、极客时间、培训机构（比如黑马、尚硅谷）等渠道获取到适合自己的实战项目视频/专栏。
 
-![慕课网实战课](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/mukewangzhiazhanke.png)
+![慕课网实战课](https://oss.javaguide.cn/javamianshizhibei/mukewangzhiazhanke.png)
 
 尽量选择一个适合自己的项目，没必要必须做分布式/微服务项目，对于绝大部分同学来说，能把一个单机项目做好就已经很不错了。
 
@@ -35,7 +40,7 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 你可以参考 [Java 优质开源实战项目](https://javaguide.cn/open-source-project/practical-project.html "Java 优质开源实战项目") 上面推荐的实战类开源项目，质量都很高，项目类型也比较全面，涵盖博客/论坛系统、考试/刷题系统、商城系统、权限管理系统、快速开发脚手架以及各种轮子。
 
-![Java 优质开源实战项目](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/javaguide-practical-project.png)
+![Java 优质开源实战项目](https://oss.javaguide.cn/javamianshizhibei/javaguide-practical-project.png)
 
 一定要记住： **不光要做，还要改进，改善。不论是实战项目视频或者专栏还是实战类开源项目，都一定会有很多可以完善改进的地方。**
 
@@ -49,7 +54,7 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 如果参加这种赛事能获奖的话，项目含金量非常高。即使没获奖也没啥，也可以写简历上。
 
-![阿里云天池大赛](https://img-blog.csdnimg.cn/7767035c52854759adf8cff5be8a2a3d.png)
+![阿里云天池大赛](https://oscimg.oschina.net/oscnet/up-673f598477242691900a1e72c5d8b26df2c.png)
 
 ### 参与实际项目
 
@@ -67,9 +72,9 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 
 ## 有没有还不错的项目推荐？
 
- **[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)** 的「面试准备篇」中有一篇文章专门整理了一些比较高质量的实战项目，非常适合用来学习或者作为项目经验。
+**[《Java 面试指北》](../zhuanlan/java-mian-shi-zhi-bei.md)** 的「面试准备篇」中有一篇文章专门整理了一些比较高质量的实战项目，非常适合用来学习或者作为项目经验。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javamianshizhibei/project-experience-guide.png)
+![](https://oss.javaguide.cn/javamianshizhibei/project-experience-guide.png)
 
 这篇文章一共推荐了 15+ 个实战项目，有业务类的，也有轮子类的，有开源项目、也有视频教程。对于参加校招的小伙伴，我更建议做一个业务类项目加上一个轮子类的项目。
 
@@ -92,7 +97,7 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 5. **安全** ： 项目是否存在安全问题？
 6. ......
 
-另外，我在星球分享过常见的性能优化方向实践案例，涉及到多线程、异步、索引、缓存等方向，强烈推荐你看看：https://t.zsxq.com/06EqfeMZZ 。
+另外，我在星球分享过常见的性能优化方向实践案例，涉及到多线程、异步、索引、缓存等方向，强烈推荐你看看：<https://t.zsxq.com/06EqfeMZZ> 。
 
 最后，**再给大家推荐一个 IDEA 优化代码的小技巧，超级实用！**
 
@@ -107,4 +112,3 @@ Github 或者码云上面有很多实战类别项目，你可以选择一个来�
 并且，你还可以自定义检查规则。
 
 ![](https://oscimg.oschina.net/oscnet/up-6b618ad3bad0bc3f76e6066d90c8cd2f255.png)
-

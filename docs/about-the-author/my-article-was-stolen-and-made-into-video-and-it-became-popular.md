@@ -5,7 +5,7 @@ tag:
   - 杂谈
 ---
 
-时间回到 2021-02-25，我在刷哔哩哔哩的时候发现，哔哩哔哩某UP主（某培训机构），擅自将我在知乎的一个回答做成了视频。
+时间回到 2021-02-25，我在刷哔哩哔哩的时候发现，哔哩哔哩某 UP 主（某培训机构），擅自将我在知乎的一个回答做成了视频。
 
 原滋原味啊！我艹。甚至，连我开头的自我调侃还加上了！真的牛皮！
 
@@ -31,7 +31,7 @@ tag:
 
 其他的视频就不用多看了，是否还是剽窃别人的原创，原封不动地做成视频，大家心里应该有数。
 
-他们这样做的目的就是一个：**引流到自己的QQ群，然后忽悠你买课程。**
+他们这样做的目的就是一个：**引流到自己的 QQ 群，然后忽悠你买课程。**
 
 我并不认为是这完全都是培训机构的问题。培训机构的员工为了流量而做这种恶心的事情，也导致了现在这种事情被越来越频繁地发生。
 
@@ -49,9 +49,9 @@ tag:
 
 谁能想到，培训机构的人竟然找人来让我删文章了！讲真，这俩人是真的奇葩啊！
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/8f8ccafcf5b764a2289a9c276c30728d.png)
+![](https://oss.javaguide.cn/javaguide/8f8ccafcf5b764a2289a9c276c30728d.png)
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/a0a4a45d7ec7b1a2622b2a38629e9b09.png)
+![](https://oss.javaguide.cn/javaguide/a0a4a45d7ec7b1a2622b2a38629e9b09.png)
 
 还让我格局大点？我去你丫的！明明就是我的原创，你自己不删，反而找人联系我删除！有脑子不？
 
@@ -59,9 +59,9 @@ tag:
 
 搞笑的是！他们在让我删文的同时，他们 B 站盗发的视频还都在，还在继续为他们引流。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/86f659a93ce5b639526c8d2bd20b2fbe.png)
+![](https://oss.javaguide.cn/javaguide/86f659a93ce5b639526c8d2bd20b2fbe.png)
 
-![](https://img-blog.csdnimg.cn/img_convert/be6e0fd23146de3f6224b4d853c59ce7.png)
+![](https://oss.javaguide.cn/github/javaguide/about-the-author/be6e0fd23146de3f6224b4d853c59ce7.png)
 
 如果他们把账号注销了，我或许还能考虑放一手。但是，文章是肯定不会删的。
 

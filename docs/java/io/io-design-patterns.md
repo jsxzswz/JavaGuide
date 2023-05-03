@@ -1,5 +1,5 @@
 ---
-title:  Java IO设计模式总结
+title: Java IO 设计模式总结
 category: Java
 tag:
   - Java IO
@@ -99,7 +99,7 @@ IO 流中的装饰器模式应用的例子实在是太多了，不需要特意�
 
 **适配器（Adapter Pattern）模式** 主要用于接口互不兼容的类的协调工作，你可以将其联想到我们日常经常使用的电源适配器。
 
-适配器模式中存在被适配的对象或者类称为 **适配者(Adaptee)** ，作用于适配者的对象或者类称为**适配器(Adapter)** 。适配器分为对象适配器和类适配器。类适配器使用继承关系来实现，对象适配器使用组合关系来实现。
+适配器模式中存在被适配的对象或者类称为 **适配者(Adapter)** ，作用于适配者的对象或者类称为**适配器(Adapter)** 。适配器分为对象适配器和类适配器。类适配器使用继承关系来实现，对象适配器使用组合关系来实现。
 
 IO 流中的字符流和字节流的接口不同，它们之间可以协调工作就是基于适配器模式来做的，更准确点来说是对象适配器。通过适配器，我们可以将字节流对象适配成一个字符流对象，这样我们可以直接通过字节流对象来读取或者写入字符数据。
 
@@ -174,7 +174,7 @@ StreamDecoder(InputStream in, Object lock, CharsetDecoder dec) {
 
 适配器和适配者两者不需要继承相同的抽象类或者实现相同的接口。
 
-另外，`FutrueTask` 类使用了适配器模式，`Executors` 的内部类 `RunnableAdapter` 实现属于适配器，用于将 `Runnable` 适配成 `Callable`。
+另外，`FutureTask` 类使用了适配器模式，`Executors` 的内部类 `RunnableAdapter` 实现属于适配器，用于将 `Runnable` 适配成 `Callable`。
 
 `FutureTask`参数包含 `Runnable` 的一个构造方法：
 

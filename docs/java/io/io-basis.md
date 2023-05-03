@@ -1,5 +1,5 @@
 ---
-title:  Java IO基础知识总结
+title: Java IO 基础知识总结
 category: Java
 tag:
   - Java IO
@@ -58,7 +58,7 @@ try (InputStream fis = new FileInputStream("input.txt")) {
 
 `input.txt` 文件内容：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419155214614.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220419155214614.png)
 
 输出：
 
@@ -129,7 +129,7 @@ try (FileOutputStream output = new FileOutputStream("output.txt")) {
 
 运行结果：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419155514392.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220419155514392.png)
 
 类似于 `FileInputStream`，`FileOutputStream` 通常也会配合 `BufferedOutputStream`（字节缓冲输出流，后文会讲到）来使用。
 
@@ -168,7 +168,7 @@ output.writeObject(person);
 
 乱码问题这个很容易就可以复现，我们只需要将上面提到的 `FileInputStream` 代码示例中的 `input.txt` 文件内容改为中文即可，原代码不需要改动。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419154632551.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220419154632551.png)
 
 输出：
 
@@ -194,7 +194,7 @@ The content read from file:§å®¶å¥½
 
 - `read()` : 从输入流读取一个字符。
 - `read(char[] cbuf)` : 从输入流中读取一些字符，并将它们存储到字符数组 `cbuf`中，等价于 `read(cbuf, 0, cbuf.length)` 。
-- `read(char[] cbuf, int off, int len)` ：在`read(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `read(char[] cbuf, int off, int len)` ：在`read(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
 - `skip(long n)` ：忽略输入流中的 n 个字符 ,返回实际忽略的字符数。
 - `close()` : 关闭输入流并释放相关的系统资源。
 
@@ -227,7 +227,7 @@ try (FileReader fileReader = new FileReader("input.txt");) {
 
 `input.txt` 文件内容：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419154632551.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220419154632551.png)
 
 输出：
 
@@ -238,15 +238,15 @@ The content read from file:我是Guide。
 
 ### Writer（字符输出流）
 
-`Writer`用于将数据（字符信息）写入到目的地（通常是文件），`java.io.Writer`抽象类是所有字节输出流的父类。
+`Writer`用于将数据（字符信息）写入到目的地（通常是文件），`java.io.Writer`抽象类是所有字符输出流的父类。
 
 `Writer` 常用方法 ：
 
 - `write(int c)` : 写入单个字符。
 - `write(char[] cbuf)` ：写入字符数组 `cbuf`，等价于`write(cbuf, 0, cbuf.length)`。
-- `write(char[] cbuf, int off, int len)` ：在`write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `write(char[] cbuf, int off, int len)` ：在`write(char[] cbuf)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
 - `write(String str)` ：写入字符串，等价于 `write(str, 0, str.length())` 。
-- `write(String str, int off, int len)` ：在`write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字节数）。
+- `write(String str, int off, int len)` ：在`write(String str)` 方法的基础上增加了 `off` 参数（偏移量）和 `len` 参数（要读取的最大字符数）。
 - `append(CharSequence csq)` ：将指定的字符序列附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `append(char c)` ：将指定的字符附加到指定的 `Writer` 对象并返回该 `Writer` 对象。
 - `flush()` ：刷新此输出流并强制写出所有缓冲的输出字符。
@@ -275,7 +275,7 @@ try (Writer output = new FileWriter("output.txt")) {
 
 输出结果：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220419155802288.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220419155802288.png)
 
 ## 字节缓冲流
 
@@ -510,7 +510,7 @@ System.out.println("读取之前的偏移量：" + randomAccessFile.getFilePoint
 
 `input.txt` 文件内容：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220421162050158.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220421162050158.png)
 
 输出：
 
@@ -535,10 +535,10 @@ randomAccessFile.write(new byte[]{'H', 'I', 'J', 'K'});
 
 `RandomAccessFile` 可以帮助我们合并文件分片，示例代码如下：
 
-![](https://img-blog.csdnimg.cn/20210609164749122.png)
+![](https://oss.javaguide.cn/github/javaguide/java/io/20210609164749122.png)
 
 我在[《Java 面试指北》](https://javaguide.cn/zhuanlan/java-mian-shi-zhi-bei.html)中详细介绍了大文件的上传问题。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/image-20220428104115362.png)
+![](https://oss.javaguide.cn/github/javaguide/java/image-20220428104115362.png)
 
 `RandomAccessFile` 的实现依赖于 `FileDescriptor` (文件描述符) 和 `FileChannel` （内存映射文件）。

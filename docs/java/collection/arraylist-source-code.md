@@ -1,10 +1,9 @@
 ---
-title:  ArrayList源码&扩容机制分析
+title: ArrayList 源码分析
 category: Java
 tag:
   - Java集合
 ---
-
 
 ## ArrayList 简介
 
@@ -20,7 +19,7 @@ public class ArrayList<E> extends AbstractList<E>
   }
 ```
 
-- `RandomAccess` 是一个标志接口，表明实现这个这个接口的 List 集合是支持**快速随机访问**的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
+- `RandomAccess` 是一个标志接口，表明实现这个接口的 List 集合是支持**快速随机访问**的。在 `ArrayList` 中，我们即可以通过元素的序号快速获取元素对象，这就是快速随机访问。
 - `ArrayList` 实现了 **`Cloneable` 接口** ，即覆盖了函数`clone()`，能被克隆。
 - `ArrayList` 实现了 `java.io.Serializable`接口，这意味着`ArrayList`支持序列化，能通过序列化去传输。
 
@@ -603,7 +602,7 @@ public class ArrayList<E> extends AbstractList<E>
 
 ```
 
-细心的同学一定会发现 ：**以无参数构造方法创建 ``ArrayList`` 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
+细心的同学一定会发现 ：**以无参数构造方法创建 `ArrayList` 时，实际上初始化赋值的是一个空数组。当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为 10。** 下面在我们分析 ArrayList 扩容时会讲到这一点内容！
 
 > 补充：JDK6 new 无参构造的 `ArrayList` 对象时，直接创建了长度是 10 的 `Object[]` 数组 elementData 。
 
@@ -668,7 +667,7 @@ public class ArrayList<E> extends AbstractList<E>
 我们来仔细分析一下：
 
 - 当我们要 add 进第 1 个元素到 ArrayList 时，elementData.length 为 0 （因为还是一个空的 list），因为执行了 `ensureCapacityInternal()` 方法 ，所以 minCapacity 此时为 10。此时，`minCapacity - elementData.length > 0`成立，所以会进入 `grow(minCapacity)` 方法。
-- 当 add 第 2 个元素时，minCapacity 为 2，此时 e lementData.length(容量)在添加第一个元素后扩容成 10 了。此时，`minCapacity - elementData.length > 0` 不成立，所以不会进入 （执行）`grow(minCapacity)` 方法。
+- 当 add 第 2 个元素时，minCapacity 为 2，此时 elementData.length(容量)在添加第一个元素后扩容成 10 了。此时，`minCapacity - elementData.length > 0` 不成立，所以不会进入 （执行）`grow(minCapacity)` 方法。
 - 添加第 3、4···到第 10 个元素时，依然不会执行 grow 方法，数组容量都为 10。
 
 直到添加第 11 个元素，minCapacity(为 11)比 elementData.length（为 10）要大。进入 grow 方法进行扩容。
@@ -891,7 +890,7 @@ public class ArrayscopyOfTest {
 
 ```
 
-理论上来说，最好在向 `ArrayList`   添加大量元素之前用 `ensureCapacity` 方法，以减少增量重新分配的次数
+理论上来说，最好在向 `ArrayList` 添加大量元素之前用 `ensureCapacity` 方法，以减少增量重新分配的次数
 
 我们通过下面的代码实际测试以下这个方法的效果：
 
@@ -940,6 +939,3 @@ public class EnsureCapacityTest {
 ```
 
 通过运行结果，我们可以看出向 `ArrayList` 添加大量元素之前使用`ensureCapacity` 方法可以提升性能。不过，这个性能差距几乎可以忽略不计。而且，实际项目根本也不可能往 `ArrayList` 里面添加这么多元素。
-
-
-

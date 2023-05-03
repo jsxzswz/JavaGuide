@@ -63,18 +63,18 @@ head:
 
 如果你看过 `HashSet` 源码的话就应该知道：`HashSet` 底层就是基于 `HashMap` 实现的。（`HashSet` 的源码非常非常少，因为除了 `clone()`、`writeObject()`、`readObject()`是 `HashSet` 自己不得不实现之外，其他方法都是直接调用 `HashMap` 中的方法。
 
-|               `HashMap`                |                          `HashSet`                           |
-| :------------------------------------: | :----------------------------------------------------------: |
-|           实现了 `Map` 接口            |                       实现 `Set` 接口                        |
-|               存储键值对               |                          仅存储对象                          |
-|     调用 `put()`向 map 中添加元素      |             调用 `add()`方法向 `Set` 中添加元素              |
+|               `HashMap`                |                                                        `HashSet`                                                         |
+| :------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
+|           实现了 `Map` 接口            |                                                     实现 `Set` 接口                                                      |
+|               存储键值对               |                                                        仅存储对象                                                        |
+|     调用 `put()`向 map 中添加元素      |                                           调用 `add()`方法向 `Set` 中添加元素                                            |
 | `HashMap` 使用键（Key）计算 `hashcode` | `HashSet` 使用成员对象来计算 `hashcode` 值，对于两个对象来说 `hashcode` 可能相同，所以`equals()`方法用来判断对象的相等性 |
 
 ### HashMap 和 TreeMap 区别
 
 `TreeMap` 和`HashMap` 都继承自`AbstractMap` ，但是需要注意的是`TreeMap`它还实现了`NavigableMap`接口和`SortedMap` 接口。
 
-![TreeMap 继承关系图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/treemap_hierarchy.png)
+![TreeMap 继承关系图](https://oss.javaguide.cn/github/javaguide/java/collection/treemap_hierarchy.png)
 
 实现 `NavigableMap` 接口让 `TreeMap` 有了对集合内元素的搜索的能力。
 
@@ -206,13 +206,13 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.8 之前的内部结构-HashMap](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/jdk1.7_hashmap.png)
+![jdk1.8 之前的内部结构-HashMap](https://oss.javaguide.cn/github/javaguide/java/collection/jdk1.7_hashmap.png)
 
 #### JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8之后的内部结构-HashMap](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/jdk1.8_hashmap.png)
+![jdk1.8之后的内部结构-HashMap](https://oss.javaguide.cn/github/javaguide/java/collection/jdk1.8_hashmap.png)
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -290,6 +290,30 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 
 [HashMap 的 7 种遍历方式与性能分析！](https://mp.weixin.qq.com/s/zQBN3UvJDhRTKP6SzcZFKw)
 
+**🐛 修正（参见： [issue#1411](https://github.com/Snailclimb/JavaGuide/issues/1411)）** ：
+
+这篇文章对于 parallelStream 遍历方式的性能分析有误，先说结论： **存在阻塞时 parallelStream 性能最高, 非阻塞时 parallelStream 性能最低** 。
+
+当遍历不存在阻塞时, parallelStream 的性能是最低的：
+
+```
+Benchmark               Mode  Cnt     Score      Error  Units
+Test.entrySet           avgt    5   288.651 ±   10.536  ns/op
+Test.keySet             avgt    5   584.594 ±   21.431  ns/op
+Test.lambda             avgt    5   221.791 ±   10.198  ns/op
+Test.parallelStream     avgt    5  6919.163 ± 1116.139  ns/op
+```
+
+加入阻塞代码`Thread.sleep(10)`后, parallelStream 的性能才是最高的:
+
+```
+Benchmark               Mode  Cnt           Score          Error  Units
+Test.entrySet           avgt    5  1554828440.000 ± 23657748.653  ns/op
+Test.keySet             avgt    5  1550612500.000 ±  6474562.858  ns/op
+Test.lambda             avgt    5  1551065180.000 ± 19164407.426  ns/op
+Test.parallelStream     avgt    5   186345456.667 ±  3210435.590  ns/op
+```
+
 ### ConcurrentHashMap 和 Hashtable 的区别
 
 `ConcurrentHashMap` 和 `Hashtable` 的区别主要体现在实现线程安全的方式上不同。
@@ -304,13 +328,13 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 
 **Hashtable** :
 
-![Hashtable 的内部结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/jdk1.7_hashmap.png)
+![Hashtable 的内部结构](https://oss.javaguide.cn/github/javaguide/java/collection/jdk1.7_hashmap.png)
 
 <p style="text-align:right;font-size:13px;color:gray">https://www.cnblogs.com/chengxiao/p/6842045.html></p>
 
 **JDK1.7 的 ConcurrentHashMap** ：
 
-![Java7 ConcurrentHashMap 存储结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/java7_concurrenthashmap.png)
+![Java7 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java7_concurrenthashmap.png)
 
 `ConcurrentHashMap` 是由 `Segment` 数组结构和 `HashEntry` 数组结构组成。
 
@@ -318,7 +342,7 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 
 **JDK1.8 的 ConcurrentHashMap** ：
 
-![Java8 ConcurrentHashMap 存储结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/java8_concurrenthashmap.png)
+![Java8 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java8_concurrenthashmap.png)
 
 JDK1.8 的 `ConcurrentHashMap` 不再是 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。不过，Node 只能用于链表的情况，红黑树的情况需要使用 **`TreeNode`**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
@@ -342,7 +366,7 @@ static final class TreeBin<K,V> extends Node<K,V> {
 
 #### JDK1.8 之前
 
-![Java7 ConcurrentHashMap 存储结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/java7_concurrenthashmap.png)
+![Java7 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java7_concurrenthashmap.png)
 
 首先将数据分为一段一段（这个“段”就是 `Segment`）的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。
 
@@ -361,7 +385,7 @@ static class Segment<K,V> extends ReentrantLock implements Serializable {
 
 #### JDK1.8 之后
 
-![Java8 ConcurrentHashMap 存储结构](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/collection/java8_concurrenthashmap.png)
+![Java8 ConcurrentHashMap 存储结构](https://oss.javaguide.cn/github/javaguide/java/collection/java8_concurrenthashmap.png)
 
 Java 8 几乎完全重写了 `ConcurrentHashMap`，代码量从原来 Java 7 中的 1000 多行，变成了现在的 6000 多行。
 
@@ -377,7 +401,7 @@ Java 8 中，锁粒度更细，`synchronized` 只锁定当前链表或红黑二�
 
 ## Collections 工具类（不重要）
 
-**`Collections` 工具类常用方法**: 
+**`Collections` 工具类常用方法**:
 
 - 排序
 - 查找,替换操作

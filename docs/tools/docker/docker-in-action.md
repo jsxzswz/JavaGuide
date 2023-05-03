@@ -1,11 +1,13 @@
 ---
-title:  Docker从入门到上手干事
+title: Docker实战
 category: 开发工具
 tag:
   - Docker
 ---
 
-## Docker介绍
+## Docker 介绍
+
+开始之前，还是简单介绍一下 Docker，更多 Docker 概念介绍可以看前一篇文章[Docker 核心概念总结](./docker-intro.md)。
 
 ### 什么是 Docker？
 
@@ -16,7 +18,7 @@ tag:
 - 用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
 - Docker 可以**对进程进行封装隔离，属于操作系统层面的虚拟化技术。** 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。
 
-官网地址：https://www.docker.com/ 。
+官网地址：<https://www.docker.com/> 。
 
 ![认识容器](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-7/container.png)
 
@@ -36,7 +38,7 @@ Docker 的出现完美地解决了这一问题，我们可以在容器中安装 
 
 另外，[《Docker 从入门到实践》](https://yeasy.gitbook.io/docker_practice/introduction/why) 这本开源书籍中也已经给出了使用 Docker 的原因。
 
-![](https://img-blog.csdnimg.cn/20210412220015698.png)
+![](https://oss.javaguide.cn/github/javaguide/tools/docker/20210412220015698.png)
 
 ## Docker 的安装
 

@@ -1,5 +1,5 @@
 ---
-title:  Java 并发常见面试题总结（上）
+title: Java并发常见面试题总结（上）
 category: Java
 tag:
   - Java并发
@@ -11,6 +11,8 @@ head:
     - name: description
       content: Java并发常见知识点和面试题总结（含详细解答），希望对你有帮助！
 ---
+
+<!-- @include: @small-advertisement.snippet.md -->
 
 ## 什么是线程和进程?
 
@@ -65,7 +67,7 @@ public class MultiThread {
 
 下图是 Java 内存区域，通过下图我们从 JVM 的角度来说一下线程和进程之间的关系。
 
-![Java 运行时数据区域（JDK1.8 之后）](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
+![Java 运行时数据区域（JDK1.8 之后）](https://oss.javaguide.cn/github/javaguide/java/jvm/java-runtime-data-areas-jdk1.8.png)
 
 从上图可以看出：一个进程中可以有多个线程，多个线程共享进程的**堆**和**方法区 (JDK1.8 之后的元空间)**资源，但是每个线程有自己的**程序计数器**、**虚拟机栈** 和 **本地方法栈**。
 
@@ -109,7 +111,7 @@ public class MultiThread {
 - **同步** ： 发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。
 - **异步** ：调用在发出之后，不用等待返回结果，该调用直接返回。
 
-## 为什么要使用多线程呢?
+## 为什么要使用多线程?
 
 先从总体上来说：
 
@@ -140,7 +142,7 @@ Java 线程在运行的生命周期中的指定时刻只可能处于下面 6 种
 
 Java 线程状态变迁图(图源：[挑错 |《Java 并发编程的艺术》中关于线程状态的三处错误](https://mp.weixin.qq.com/s/UOrXql_LhOD8dhTq_EPI0w))：
 
-![Java 线程状态变迁图](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/java/concurrent/640.png)
+![Java 线程状态变迁图](https://oss.javaguide.cn/github/javaguide/java/concurrent/640.png)
 
 由上图可以看出：线程创建之后它将处于 **NEW（新建）** 状态，调用 `start()` 方法后开始运行，线程这时候处于 **READY（可运行）** 状态。可运行状态的线程获得了 CPU 时间片（timeslice）后就处于 **RUNNING（运行）** 状态。
 
@@ -157,7 +159,7 @@ Java 线程状态变迁图(图源：[挑错 |《Java 并发编程的艺术》中
 
 相关阅读：[线程的几种状态你真的了解么？](https://mp.weixin.qq.com/s/R5MrTsWvk9McFSQ7bS0W2w) 。
 
-## 什么是上下文切换?
+## 什么是线程上下文切换?
 
 线程在执行过程中会有自己的运行条件和状态（也称上下文），比如上文所说到过的程序计数器，栈信息等。当出现如下情况的时候，线程会从占用 CPU 状态中退出。
 

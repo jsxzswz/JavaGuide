@@ -43,7 +43,7 @@ var array = {1,2,3};//❌编译不通过,不能声明数组
 
 var 并不会改变 Java 是一门静态类型语言的事实，编译器负责推断出类型。
 
-另外，Scala 和 Kotlin 中已经有了  `val` 关键字 ( `final var` 组合关键字)。
+另外，Scala 和 Kotlin 中已经有了 `val` 关键字 ( `final var` 组合关键字)。
 
 相关阅读：[《Java 10 新特性之局部变量类型推断》](https://zhuanlan.zhihu.com/p/34911982)。
 
@@ -69,7 +69,7 @@ static <E> List<E> copyOf(Collection<? extends E> coll) {
 
 使用 `copyOf()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。 IDEA 也会有相应的提示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816154125579.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210816154125579.png)
 
 并且，`java.util.stream.Collectors` 中新增了静态方法，用于将流中的元素收集为不可变的集合。
 
@@ -98,7 +98,7 @@ Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置�
 
 Graal 是一个基于 Java 语言编写的 JIT 编译器，是 JDK 9 中引入的实验性 Ahead-of-Time (AOT) 编译器的基础。
 
-Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在Java 10 (Linux/x64, macOS/x64) 中，默认情况下HotSpot 仍使用C2，但通过向java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
+Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2。在 Java 10 (Linux/x64, macOS/x64) 中，默认情况下 HotSpot 仍使用 C2，但通过向 java 命令添加 `-XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler` 参数便可将 C2 替换成 Graal。
 
 相关阅读：[深入浅出 Java 10 的实验性 JIT 编译器 Graal - 郑雨迪](https://www.infoq.cn/article/java-10-jit-compiler-graal)
 
@@ -115,5 +115,3 @@ Oracle 的 HotSpot VM 便附带两个用 C++ 实现的 JIT compiler：C1 及 C2�
 - Guide to Java10 : <https://www.baeldung.com/java-10-overview>
 
 - 4 Class Data Sharing : https://docs.oracle.com/javase/10/vm/class-data-sharing.htm#JSJVM-GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91
-
-  

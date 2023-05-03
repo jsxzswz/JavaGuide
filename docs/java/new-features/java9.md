@@ -23,7 +23,7 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 
 在 JShell 中可以直接输入表达式并查看其执行结果。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816083417616.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210816083417616.png)
 
 **JShell 为我们带来了哪些好处呢？**
 
@@ -50,7 +50,7 @@ JShell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 
 任意一个 jar 文件，只要加上一个模块描述文件（`module-info.java`），就可以升级为一个模块。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/module-structure.png)
+![](https://oss.javaguide.cn/java-guide-blog/module-structure.png)
 
 在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 **[jlink](http://openjdk.java.net/jeps/282) 工具** (Jlink 是随 Java 9 一起发布的新命令行工具。它允许开发人员为基于模块的 Java 应用程序创建自己的轻量级、定制的 JRE)，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。
 
@@ -64,7 +64,7 @@ module my.module {
 
 module my.module {
      //exports…to 限制访问的成员范围
-    export com.·my.package.name to com.specific.package;
+    export com.my.package.name to com.specific.package;
 }
 ```
 
@@ -72,14 +72,13 @@ module my.module {
 
 - [《Project Jigsaw: Module System Quick-Start Guide》](https://openjdk.java.net/projects/jigsaw/quick-start)
 - [《Java 9 Modules: part 1》](https://stacktraceguru.com/java9/module-introduction)
-- [[Java 9 揭秘（2. 模块化系统）](https://www.cnblogs.com/IcanFixIt/p/6947763.html)](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
+- [Java 9 揭秘（2. 模块化系统）](http://www.cnblogs.com/IcanFixIt/p/6947763.html)
 
 ## G1 成为默认垃圾回收器
 
-在 Java 8 的时候，默认垃圾回收器是 Parallel Scavenge（新生代）+Parallel Old（老年代）。到了 Java 9, CMS 垃圾回收器被废弃了，**G1（Garbage-First Garbage Collector）**  成为了默认垃圾回收器。
+在 Java 8 的时候，默认垃圾回收器是 Parallel Scavenge（新生代）+Parallel Old（老年代）。到了 Java 9, CMS 垃圾回收器被废弃了，**G1（Garbage-First Garbage Collector）** 成为了默认垃圾回收器。
 
 G1 还是在 Java 7 中被引入的，经过两个版本优异的表现成为成为默认垃圾回收器。
-
 
 ## 快速创建不可变集合
 
@@ -223,7 +222,7 @@ System.out.println(currentProcess.info());
 
 `ProcessHandle` 接口概览：
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816104614414.png)
+![](https://oss.javaguide.cn/java-guide-blog/image-20210816104614414.png)
 
 ## 响应式流 （ Reactive Streams ）
 

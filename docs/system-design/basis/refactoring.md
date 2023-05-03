@@ -1,11 +1,11 @@
 ---
-title:  代码重构指南
+title: 代码重构指南
 category: 代码质量
 ---
 
 前段时间重读了[《重构：改善代码既有设计》](https://book.douban.com/subject/30468597/)，收货颇多。于是，简单写了一篇文章来聊聊我对重构的看法。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20220311155746549.png)
+![](https://oss.javaguide.cn/github/javaguide/image-20220311155746549.png)
 
 ## 何谓重构？
 
@@ -22,15 +22,13 @@ category: 代码质量
 
 **常见的设计模式如下** ：
 
-![常见的设计模式](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/image-20220311160610999.png)
-
-
+![常见的设计模式](https://oss.javaguide.cn/github/javaguide/system-design/basis/common-design-patterns.png)
 
 更全面的设计模式总结，可以看 **[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 这个开源项目。
 
 **常见的软件设计原则如下** ：
 
-![常见的软件设计原](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/programming-principles%20.png)
+![常见的软件设计原则](https://oss.javaguide.cn/github/javaguide/system-design/basis/programming-principles%20.png)
 
 更全面的设计原则总结，可以看 **[java-design-patterns](https://github.com/iluwatar/java-design-patterns)** 和 **[hacker-laws-zh](https://github.com/nusr/hacker-laws-zh)** 这两个开源项目。
 
@@ -50,7 +48,7 @@ category: 代码质量
 
 重构并不会减慢软件开发速度，相反，如果代码质量和软件设计较差，当我们想要添加新功能的话，开发速度会越来越慢。到了最后，甚至都有想要重写整个系统的冲动。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/bad&good-design.png)
+![](https://oss.javaguide.cn/github/javaguide/bad&good-design.png)
 
 《重构：改善代码既有设计》这本书中这样说：
 
@@ -70,7 +68,7 @@ category: 代码质量
 
 项目团队的每一个人只有保证自己的提交没有让项目代码变得更腐化，项目代码才会朝着健康的方向发展。
 
-**当我们离开营地（项目代码）的时候，请不要留下垃圾（代码花味道）！尽量确保营地变得更干净了！**
+**当我们离开营地（项目代码）的时候，请不要留下垃圾（代码坏味道）！尽量确保营地变得更干净了！**
 
 ### 开发一个新功能之后&之前
 
@@ -80,7 +78,7 @@ category: 代码质量
 
 有一个两顶帽子的比喻：在我开发新功能之前，我发现重构可以让新功能的开发更容易，于是我戴上了重构的帽子。重构之后，我换回原来的帽子，继续开发新能功能。新功能开发完成之后，我又发现自己的代码难以理解，于是我又戴上了重构帽子。比较好的开发状态就是就是这样在重构和开发新功能之间来回切换。
 
-![refractor-two-hats](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/github/javaguide/refractor-two-hats.png)
+![refractor-two-hats](https://oss.javaguide.cn/github/javaguide/refractor-two-hats.png)
 
 ### Code Review 之后
 
@@ -136,3 +134,9 @@ Code Review 可以非常有效提高代码的整体质量，它会帮助我们�
 
 - [重构实战练习](https://linesh.gitbook.io/refactoring/) ：通过几个小案例一步一步带你学习重构！
 - [设计模式+重构学习网站](https://refactoringguru.cn/) ：免费在线学习代码重构、 设计模式、 SOLID 原则 （单一职责、 开闭原则、 里氏替换、 接口隔离以及依赖反转） 。
+- [IDEA 官方文档的代码重构教程](https://www.jetbrains.com/help/idea/refactoring-source-code.html#popular-refactorings) ： 教你如何使用 IDEA 进行重构。
+
+## 参考
+
+- [再读《重构》- ThoughtWorks 洞见 - 2020](https://insights.thoughtworks.cn/reread-refactoring/) ：详细介绍了重构的要点比如小步重构、捡垃圾式的重构，主要是重构概念相关的介绍。
+- [常见代码重构技巧 - VectorJin - 2021](https://juejin.cn/post/6954378167947624484) ：从软件设计原则、设计模式、代码分层、命名规范等角度介绍了如何进行重构，比较偏实战。

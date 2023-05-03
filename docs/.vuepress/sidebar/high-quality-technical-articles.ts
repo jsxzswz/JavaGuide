@@ -1,10 +1,13 @@
-export const highQualityTechnicalArticles = [
+import { arraySidebar } from "vuepress-theme-hope";
+
+export const highQualityTechnicalArticles = arraySidebar([
   {
     text: "练级攻略",
     icon: "et-performance",
     prefix: "advanced-programmer/",
-    collapsable: false,
+    collapsible: false,
     children: [
+      "the-growth-strategy-of-the-technological-giant",
       "seven-tips-for-becoming-an-advanced-programmer",
       "20-bad-habits-of-bad-programmers",
     ],
@@ -13,9 +16,10 @@ export const highQualityTechnicalArticles = [
     text: "个人经历",
     icon: "experience",
     prefix: "personal-experience/",
-    collapsable: false,
+    collapsible: false,
     children: [
-      "two-years-of-back-end-develop--experience-in-didi&toutiao",
+      "four-year-work-in-tencent-summary",
+      "two-years-of-back-end-develop--experience-in-didi-and-toutiao",
       "8-years-programmer-work-summary",
       "huawei-od-275-days",
     ],
@@ -24,7 +28,7 @@ export const highQualityTechnicalArticles = [
     text: "程序员",
     icon: "code",
     prefix: "programmer/",
-    collapsable: false,
+    collapsible: false,
     children: [
       "how-do-programmers-publish-a-technical-book",
       "efficient-book-publishing-and-practice-guide",
@@ -34,7 +38,7 @@ export const highQualityTechnicalArticles = [
     text: "面试",
     icon: "interview",
     prefix: "interview/",
-    collapsable: false,
+    collapsible: false,
     children: [
       "the-experience-of-get-offer-from-over-20-big-companies",
       "the-experience-and-thinking-of-an-interview-experienced-by-an-older-programmer",
@@ -50,10 +54,10 @@ export const highQualityTechnicalArticles = [
     text: "工作",
     icon: "work",
     prefix: "work/",
-    collapsable: false,
+    collapsible: false,
     children: [
       "get-into-work-mode-quickly-when-you-join-a-company",
       "employee-performance",
     ],
   },
-];
+]);
